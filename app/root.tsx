@@ -5,12 +5,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import stylesheet from "~/tailwind.css?url";
 import Navigation from "./common/components/navigation";
+import AppBar from "./common/components/AppBar";
+import BottomNav from "./common/components/BottomNav";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -44,12 +47,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+const ROUTES_WITHOUT_NAVIGATION = [
+  "/",
+  "/login",
+  "/signup",
+  "/survey",
+  "/find-id",
+  "/find-password",
+];
 export default function App() {
+  const location = useLocation();
+  const hideNavigation = ROUTES_WITHOUT_NAVIGATION.includes(location.pathname);
+
   return (
-    <>
-      <Navigation />
-      <Outlet />
-    </>
+    <div className="flex flex-col min-h-screen">
+      <AppBar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      {!hideNavigation && <BottomNav />}
+    </div>
   );
 }
 

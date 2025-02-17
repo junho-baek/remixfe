@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { useState } from "react";
 import { Separator } from "~/common/components/ui/separator";
 import {
   NavigationMenu,
@@ -9,7 +10,7 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
-
+import { Button } from "./ui/button";
 import { cn } from "~/lib/utils";
 const menus = [
   {
@@ -117,8 +118,9 @@ const menus = [
   },
 ];
 export default function Navigation() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <div className="flex justify-between items-center px-20 h-16 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 bg-background/50">
+    <nav className="flex justify-between items-center px-20 h-16 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 bg-background/50">
       <div className="flex items-center gap-4">
         <Link to="/">Ybigta</Link>
         <Separator orientation="vertical" className="h-6 mx-4" />
@@ -172,6 +174,16 @@ export default function Navigation() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-    </div>
+      {isLoggedIn ? null : (
+        <div className="flex items-center gap-4">
+          <Button asChild>
+            <Link to="/auth/login">로그인</Link>
+          </Button>
+          <Button asChild>
+            <Link to="/auth/signup">회원가입</Link>
+          </Button>
+        </div>
+      )}
+    </nav>
   );
 }
