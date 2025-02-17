@@ -7,7 +7,7 @@ export default [
   route("/login", "auth/pages/login.tsx"),
   route("/signup", "auth/pages/signup.tsx"),
   route("/survey", "auth/pages/survey.tsx"),
-  route("results2", "user/pages/match-results.tsx"),
+  // route("results2", "user/pages/match-results.tsx"),
   route("home", "user/pages/user-match.tsx", [
     route("timetable", "user/pages/match-timetable.tsx"),
     route("results", "user/pages/match-results.tsx"),
