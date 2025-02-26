@@ -4,3 +4,9 @@
 # React Router
 /.react-router/
 /build/
+
+# DB
+/db.ts
+
+# Environment Variables
+.env

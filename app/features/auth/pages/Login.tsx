@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
-import type { Route } from "../../+types/root";
+import type { Route } from "../../../+types/root";
 import { Button } from "~/common/components/ui/button";
 import { Input } from "~/common/components/ui/input";
 import { Separator } from "~/common/components/ui/separator";

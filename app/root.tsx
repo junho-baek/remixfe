@@ -11,7 +11,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import stylesheet from "~/tailwind.css?url";
-import Navigation from "./common/components/navigation";
+
 import AppBar from "./common/components/AppBar";
 import BottomNav from "./common/components/BottomNav";
 
@@ -48,7 +48,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 const ROUTES_WITHOUT_NAVIGATION = [
-  "/",
   "/login",
   "/signup",
   "/survey",

@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/common/components/ui/table";
-// import { Button } from "~/common/components/ui/button";
+import { Button } from "~/common/components/ui/button";
 
 const days = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -76,9 +76,25 @@ export default function SelectoTimeTable() {
     setSelectedCells(newSelection);
   };
 
+  // 금요일 18:00-20:00 비트마스크 생성
+  const fridayEveningMask = () => {
+    let mask = BigInt(0);
+    // 228부터 231까지의 비트를 1로 설정
+    for (let i = 228; i < 232; i++) {
+      mask |= BigInt(1) << BigInt(i);
+    }
+    return mask;
+  };
+
+  // 사용 예시
+  const applyFridayEvening = () => {
+    const newSelection = fromBitMask(fridayEveningMask());
+    setSelectedCells(newSelection);
+  };
+
   return (
-    <div className="relative w-full h-[80vh] overflow-auto" ref={containerRef}>
-      <div className="sticky top-0 z-30 bg-white p-4 border-b flex justify-between items-center">
+    <div className="relative  h-[80vh] overflow-auto" ref={containerRef}>
+      <div className="sticky top-0 z-30 bg-white p-4 border-b flex justify-between items-center w-48 overflow-auto">
         <div className="flex gap-4 flex-col">
           <div className="text-sm">
             <span className="font-medium">2진수: </span>
@@ -139,7 +155,7 @@ export default function SelectoTimeTable() {
         container={containerRef.current}
         selectableTargets={[".selecto-cell"]}
         hitRate={0} // 드래그 범위가 셀에 맞으면 선택됨
-        selectByClick={true} // 클릭으로도 선택 가능
+        // selectByClick={true} // 클릭으로도 선택 가능
         selectFromInside={true} // 내부에서도 선택 가능
         continueSelect={true}
         preventDefault={true} // 모바일에서 터치 시 스크롤 방지
